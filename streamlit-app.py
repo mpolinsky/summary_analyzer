@@ -10,7 +10,7 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 # Returns list of n-grams in both, with value of n first.
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
-  return (n, [i for i in A if i in B] if len(A) > len(B) else [i for i in B if i in A])
+  return (N, [i for i in A if i in B] if len(A) > len(B) else [i for i in B if i in A])
 
 
 l,c,r = st.columns([1,2,1])
