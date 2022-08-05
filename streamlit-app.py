@@ -20,7 +20,12 @@ with st.form("Entry"):
   N = st.slider("Pick a value for n-grams", 0, 8 )
   submit = st.form_submit_button("Select")
   if submit:
-    compare_n_grams(article, summary, n=N)
+    A = TextBlob(article)
+    B = TextBlob(summary)
+    common_n_grams = compare_n_grams(A, B, n=N)
+    st.subheader(f"{len(common_n_grams)} found.")
+    if len(common_n_grams) > 0:
+      st.write(common_n_grams)
     #col1.write(article)
     #col3.write(summary)
 
