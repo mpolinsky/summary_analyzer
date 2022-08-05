@@ -11,6 +11,7 @@ col3.subheader("Summary")
 with st.form("Entry"):
   article = col1.text_input("Enter article: ")
   summary = col3.text_input("Enter summary: ")
+  st.form_submit_button("Select")
 
 col1.write(article)
 col2.write(summary)
