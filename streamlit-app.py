@@ -13,8 +13,8 @@ with st.form("Entry"):
   summary = col3.text_input("Enter summary: ")
   st.form_submit_button("Select")
 
-col1.write(article)
-col2.write(summary)
+  col1.write(article)
+  col3.write(summary)
 
 st.subheader("End")
 
