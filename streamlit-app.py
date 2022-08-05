@@ -1,7 +1,7 @@
 import streamlit as st
 # Create list of n-grams
 def get_n_grams(phrase, n):
-  return [phrase[i:i + n] for i in range(len(phrase.split(' ') ) -n +1 )]
+  return [phrase.split(" ")[i:i + n] for i in range(len(phrase.split(' ') ) -n +1 )]
 
 # Returns list of n-grams for article and summary
 def get_article_and_summary_n_grams(art, sum, n=2):
@@ -10,8 +10,7 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 # Returns list of n-grams in both, with value of n first.
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
-  return (N, [i for i in A if i in B] if len(A) > len(B) else [i for i in B if i in A])
-
+  return [i for i in A if i in B] if len(A) > len(B) else [i for i in B if i in A]
 
 l,c,r = st.columns([1,2,1])
 
