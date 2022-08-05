@@ -1,4 +1,5 @@
 import streamlit as st
+from textblob import TextBlob
 
 # Returns list of n-grams in both, with value of n first.
 def compare_n_grams(A, B, n=2):
