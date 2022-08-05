@@ -27,7 +27,7 @@ with st.form("Entry"):
   grams = st.slider("Pick a value for n-grams", 0, 8 )
   submit = st.form_submit_button("Select")
   if submit:
-    common_n_grams = compare_n_grams(A, B, N=grams)
+    common_n_grams = compare_n_grams(article, summary, N=grams)
     st.subheader(f"{len(common_n_grams)} found.")
     if len(common_n_grams) > 0:
       st.write(common_n_grams)
