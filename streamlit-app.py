@@ -1,4 +1,6 @@
 import streamlit as st
+
+
 # Create list of n-grams
 def get_n_grams(phrase, n):
   return [phrase.split(" ")[i:i + n] for i in range(len(phrase.split(' ') ) -n +1 )]
@@ -14,7 +16,7 @@ def compare_n_grams(art, sum, N=2):
 
 l,c,r = st.columns([1,2,1])
 
-c.title("Text Analyzer..")
+c.title("n-gram analysis")
 col1, col2, col3 = st.columns([1.5, 1, 1.5])
 
 col1.subheader("Article")
