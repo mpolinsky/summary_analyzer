@@ -16,6 +16,8 @@ with st.form("Entry"):
     col1.write(article)
     col3.write(summary)
 
+st.button("Reset")
+    
 st.subheader("End")
 
 
