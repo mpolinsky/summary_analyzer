@@ -1,9 +1,16 @@
 import streamlit as st
-from textblob import TextBlob
+# Create list of n-grams
+def get_n_grams(phrase, n):
+  return [phrase[i:i + n] for i in range(len(phrase.split(' ') ) -n +1 )]
+
+# Returns list of n-grams for article and summary
+def get_article_and_summary_n_grams(art, sum, n=2):
+  return get_n_grams(art, n), get_n_grams(sum, n)
 
 # Returns list of n-grams in both, with value of n first.
-def compare_n_grams(A, B, n=2):
-  return (n, [i for i in list(A.ngrams(n)) if i in list(B.ngrams(n))] if len(list(A.ngrams(n=2))) > len(list(B.ngrams(n))) else [i for i in list(B.ngrams(n)) if i in list(A.ngrams(n=2))])
+def compare_n_grams(art, sum, N=2):
+  A, B = get_article_and_summary_n_grams(art, sum, n=N)
+  return (n, [i for i in A if i in B] if len(A) > len(B) else [i for i in B if i in A])
 
 
 l,c,r = st.columns([1,2,1])
@@ -17,12 +24,10 @@ col3.subheader("Summary")
 with st.form("Entry"):
   article = col1.text_input("Enter article: ")
   summary = col3.text_input("Enter summary: ")
-  N = st.slider("Pick a value for n-grams", 0, 8 )
+  grams = st.slider("Pick a value for n-grams", 0, 8 )
   submit = st.form_submit_button("Select")
-  if submit:
-    A = TextBlob(article)
-    B = TextBlob(summary)
-    common_n_grams = compare_n_grams(A, B, n=N)
+  if submit
+    common_n_grams = compare_n_grams(A, B, N=grams)
     st.subheader(f"{len(common_n_grams)} found.")
     if len(common_n_grams) > 0:
       st.write(common_n_grams)
