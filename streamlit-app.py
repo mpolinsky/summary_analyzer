@@ -30,7 +30,8 @@ with st.form("Entry"):
   grams = st.slider("Select a value for n", 2, 10 )
   submit = st.form_submit_button("Select")
   if submit:
-    common_n_grams = compare_n_grams(article, summary, N=grams)
+    # Display non-overlapping n-grams from summary found in original    ## Are there edge cases this is eliminating incorrectly?
+    common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
     st.subheader(f"{len(common_n_grams)} found.")
     if len(common_n_grams) > 0:
       st.write(common_n_grams)
