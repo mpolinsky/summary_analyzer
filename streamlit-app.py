@@ -1,13 +1,14 @@
 import streamlit as st
-
+import string
 
 # Create list of n-grams
 def get_n_grams(phrase, n):
-  return [phrase.split(" ")[i:i + n] for i in range(len(phrase.split(' ') ) - n)]
+  clean_phrase = "".join( [i for i in phrase if i not in string.punctuation] )
+  return [clean_phrase.split(" ")[i:i + n] for i in range(len(phrase.split(' ') ) - n)]
 
 # Returns list of n-grams for article and summary
 def get_article_and_summary_n_grams(art, sum, n=2):
-  return get_n_grams(art, n), get_n_grams(sum, n)
+  return get_n_grams(art.lower(), n), get_n_grams(sum.lower(), n)
 
 # Returns list of n-grams in both, with value of n first.
 # I only need the ngrams from the summary that are also in the source.
