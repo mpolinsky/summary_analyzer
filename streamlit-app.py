@@ -14,7 +14,7 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 # I only need the ngrams from the summary that are also in the source.
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
-  return [i for i in B if i in A and i != ""]    
+  return [i for i in B if i in A]    
 
 l,c,r = st.columns([1,2,1])
 
@@ -33,10 +33,10 @@ with st.form("Entry"):
   if submit:
     # Display non-overlapping n-grams from summary found in original    ## Are there edge cases this is eliminating incorrectly?
     common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
-    common_n_grams = [i.remove("") for i in common_n_grams if "" in i]
     st.subheader(f"{len(common_n_grams)} found.")
     if len(common_n_grams) > 0:
-      st.write(common_n_grams)
+      for j in common_n_grams:
+        st.write(" ".join(j))
 
 st.button("Reset")
     
