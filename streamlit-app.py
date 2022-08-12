@@ -45,6 +45,6 @@ with st.form("Entry"):
     if len(common_n_grams) > 0:
       annotated_text(
         " ".join(summary_list[:common_n_grams[0][0]] ),
-       (" ".join(summary_list[common_n_grams[0][0]:common_n_grams[0][1]]), '9', '#8ef'),
+       (" ".join(summary_list[common_n_grams[0][0]:common_n_grams[0][1]]), '', '#8ef'),
        (" ".join(summary_list[common_n_grams[0][1]:])))
 #st.button("Reset")
