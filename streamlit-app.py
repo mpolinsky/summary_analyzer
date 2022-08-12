@@ -33,6 +33,7 @@ with st.form("Entry"):
   if submit:
     # Display non-overlapping n-grams from summary found in original    ## Are there edge cases this is eliminating incorrectly?
     common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
+    common_n_grams = [i.remove("") for i in common_n_grams]
     st.subheader(f"{len(common_n_grams)} found.")
     if len(common_n_grams) > 0:
       st.write(common_n_grams)
