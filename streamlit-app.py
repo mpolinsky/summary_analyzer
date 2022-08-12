@@ -3,7 +3,7 @@ import streamlit as st
 
 # Create list of n-grams
 def get_n_grams(phrase, n):
-  return [phrase.split(" ")[i:i + n] for i in range(len(phrase.split(' ') ) -n +1 )]
+  return [phrase.split(" ")[i:i + n + 1] for i in range(len(phrase.split(' ') ) -n +1 )]
 
 # Returns list of n-grams for article and summary
 def get_article_and_summary_n_grams(art, sum, n=2):
