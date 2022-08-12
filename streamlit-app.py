@@ -48,4 +48,4 @@ with st.form("Entry"):
        (" ".join(summary_list[common_n_grams[0][0]:common_n_grams[0][1]]), #8ef),
        (" ".join(summary_list[common_n_grams[0][1]:]))
       )
-st.button("Reset")
+#st.button("Reset")
