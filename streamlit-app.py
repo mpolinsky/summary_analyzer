@@ -14,7 +14,7 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 # I only need the ngrams from the summary that are also in the source.
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
-  return [i for i in B if i in A if i != ""]    ##  previous start of expression.  
+  return [i for i in B if i in A and i != ""]    
 
 l,c,r = st.columns([1,2,1])
 
