@@ -6,7 +6,8 @@ from annotated_text import annotated_text
 # Create list of n-grams
 def get_n_grams(phrase, n):
   clean_phrase = "".join( [i for i in phrase if i not in string.punctuation] )
-  return [clean_phrase.split(" ")[i:i + n] for i in range(len(phrase.split(' ') ) - n)]
+  # return a triple: n-gram start, n-gram stop, n-gram
+  return [(i, i+n, clean_phrase.split(" ")[i:i + n]) for i in range(len(phrase.split(' ') ) - n)]
 
 # Returns list of n-grams for article and summary
 def get_article_and_summary_n_grams(art, sum, n=2):
@@ -16,7 +17,8 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 # I only need the ngrams from the summary that are also in the source.
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
-  return [i for i in B if i in A]    
+  # return the tuples with start, stop and n-gram if the n-gram from the summary is also in the source text.
+  return [i for i in B if i[2] in [j[2] for j in A]]    
 
 l,c,r = st.columns([1,2,1])
 
@@ -33,12 +35,13 @@ with st.form("Entry"):
   grams = st.slider("Select a value for n", 2, 30 )
   submit = st.form_submit_button("Select")
   if submit:
-    # Display non-overlapping n-grams from summary found in original    ## Are there edge cases this is eliminating incorrectly?
+    # Display non-overlapping n-grams from summary found in original  
+    # common_n_grams is a list of the above start,stop,ngram tuples.
     common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
     st.subheader(f"{len(common_n_grams)} found.")
     if len(common_n_grams) > 0:
       for j in common_n_grams:
-        st.write(" ".join(j))
-        annotated_text(summary)
+        st.write(" ".join(j[2]))
+        
 
 st.button("Reset")
