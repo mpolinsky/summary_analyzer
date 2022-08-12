@@ -1,5 +1,7 @@
 import streamlit as st
 import string
+from annotated_text import annotated_text
+
 
 # Create list of n-grams
 def get_n_grams(phrase, n):
@@ -37,10 +39,6 @@ with st.form("Entry"):
     if len(common_n_grams) > 0:
       for j in common_n_grams:
         st.write(" ".join(j))
+        st.annotated_text(summary)
 
 st.button("Reset")
-    
-
-
-
-
