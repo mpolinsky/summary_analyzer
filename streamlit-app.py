@@ -39,6 +39,6 @@ with st.form("Entry"):
     if len(common_n_grams) > 0:
       for j in common_n_grams:
         st.write(" ".join(j))
-        st.annotated_text(summary)
+        annotated_text(summary)
 
 st.button("Reset")
