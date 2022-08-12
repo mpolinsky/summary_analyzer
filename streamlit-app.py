@@ -27,7 +27,7 @@ col3.subheader("Summary")
 with st.form("Entry"):
   article = col1.text_input("Enter article: ")
   summary = col3.text_input("Enter summary: ")
-  grams = st.slider("Select a value for n", 2, 16 )
+  grams = st.slider("Select a value for n", 2, 30 )
   submit = st.form_submit_button("Select")
   if submit:
     # Display non-overlapping n-grams from summary found in original    ## Are there edge cases this is eliminating incorrectly?
