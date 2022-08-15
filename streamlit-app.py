@@ -44,6 +44,7 @@ with st.form("Entry"):
     common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
     st.subheader(f"{len(common_n_grams)} found.")
    # st.write(common_n_grams)
+    article_list = article.split(" ")
     summary_list = summary.split(" ")
     #indices = [(i[0],i[1]) for i in common_n_grams]
     #common_n_grams = [i[2] for i in common_n_grams]
