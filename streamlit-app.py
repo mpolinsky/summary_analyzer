@@ -70,7 +70,7 @@ with st.form("Entry"):
     annotated_article.append("".join(article_list[start:]))
       
     if len(common_n_grams) > 0:
-      annotated_text(*text_to_annotate)
+      annotated_text(*annotated_summary)
       st.write("")
       annotated_text(*annotated_article)
 #        " ".join(summary_list[:common_n_grams[0] + grams] ),
