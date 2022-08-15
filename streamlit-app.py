@@ -58,7 +58,7 @@ with st.form("Entry"):
       start = ngram_tuple[0]+grams
       
     if len(common_n_grams) > 0:
-      annotated_text(text_to_annotate)
+      annotated_text(*text_to_annotate)
 #        " ".join(summary_list[:common_n_grams[0] + grams] ),
 #      (" ".join(summary_list[common_n_grams[0] + grams:common_n_grams[0] + grams]), '', '#8ef'),
 #       (" ".join(summary_list[common_n_grams[0] + grams:])))
