@@ -18,7 +18,11 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
   # return the tuples with start, stop and n-gram if the n-gram from the summary is also in the source text.
-  return [i for i in B if i[2] in [j[2] for j in A]]    
+  summary_tuples = [i for i in B if i[2] in [j[2] for j in A]]   
+  article_tuples = [j for j in A if j[2] in [k[2] for k in summary_tuples]]
+  return [(p[0],m[0],p[2]) for p,m in zip(summary_tuples, article_tuples)]
+
+
 
 l,c,r = st.columns([1,2,1])
 
@@ -39,14 +43,40 @@ with st.form("Entry"):
     # common_n_grams is a list of the above start,stop,ngram tuples.
     common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
     st.subheader(f"{len(common_n_grams)} found.")
-    
+   # st.write(common_n_grams)
+    article_list = article.split(" ")
     summary_list = summary.split(" ")
     #indices = [(i[0],i[1]) for i in common_n_grams]
     #common_n_grams = [i[2] for i in common_n_grams]
    #  # c_n_grams contains the grams, indices contains start and stop index for each.
+    annotated_summary = list()
+    
+    start = 0
+    for ngram_tuple in common_n_grams:
+      # add text from start to next tuple start
+      annotated_summary.append(" ".join(summary_list[start:ngram_tuple[0]]))
+      annotated_summary.append((" ".join(summary_list[ngram_tuple[0]:ngram_tuple[0]+grams]), '', '#fea'))
+      start = ngram_tuple[0]+grams
+    annotated_summary.append(" ".join(summary_list[start:]))
+    
+    annotated_article = list()
+    
+    start = 0
+    for ngram_tuple in common_n_grams:
+      # add text from start to next tuple start
+      annotated_article.append(" ".join(article_list[start:ngram_tuple[1]]))
+      annotated_article.append((" ".join(article_list[ngram_tuple[1]:ngram_tuple[1]+grams]), '', '#afa'))
+      start = ngram_tuple[1]+grams
+    annotated_article.append(" ".join(article_list[start:]))
+    
+    
+    
     if len(common_n_grams) > 0:
-      annotated_text(
-        " ".join(summary_list[:common_n_grams[0][0]] ),
-       (" ".join(summary_list[common_n_grams[0][0]:common_n_grams[0][1]]), '', '#8ef'),
-       (" ".join(summary_list[common_n_grams[0][1]:])))
-#st.button("Reset")
+      art_col, sum_col = st.columns(2)
+      with art_col:
+        st.subheader("Original:")
+        annotated_text(*annotated_article)
+      with sum_col:
+        st.subheader("Summary:")
+        annotated_text(*annotated_summary)
+
