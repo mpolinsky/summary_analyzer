@@ -55,7 +55,7 @@ with st.form("Entry"):
     for ngram_tuple in common_n_grams:
       # add text from start to next tuple start
       annotated_summary.append(" ".join(summary_list[start:ngram_tuple[0]]))
-      annotated_summary.append((" ".join(summary_list[ngram_tuple[0]:ngram_tuple[0]+grams]), '', '#8ef'))
+      annotated_summary.append((" ".join(summary_list[ngram_tuple[0]:ngram_tuple[0]+grams]), '', '#fea'))
       start = ngram_tuple[0]+grams
     annotated_summary.append("".join(summary_list[start:]))
     
