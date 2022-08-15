@@ -22,7 +22,7 @@ def compare_n_grams(art, sum, N=2):
   article_tuples = [j for j in A if j[2] in [k[2] for k in summary_tuples]]
   return [(p[0],m[0],p[2]) for p,m in zip(summary_tuples, article_tuples)]
 
-st.title("add highlighting")
+
 
 l,c,r = st.columns([1,2,1])
 
