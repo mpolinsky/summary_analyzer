@@ -48,12 +48,11 @@ with st.form("Entry"):
     #indices = [(i[0],i[1]) for i in common_n_grams]
     #common_n_grams = [i[2] for i in common_n_grams]
    #  # c_n_grams contains the grams, indices contains start and stop index for each.
-   """
-    if len(common_n_grams) > 0:
-      annotated_text(
-        " ".join(summary_list[:common_n_grams[0] + grams] ),
-       (" ".join(summary_list[common_n_grams[0] + grams:common_n_grams[0] + grams]), '', '#8ef'),
-       (" ".join(summary_list[common_n_grams[0] + grams:])))
-  """
-#st.button("Reset")
+
+#    if len(common_n_grams) > 0:
+#      annotated_text(
+#        " ".join(summary_list[:common_n_grams[0] + grams] ),
+#      (" ".join(summary_list[common_n_grams[0] + grams:common_n_grams[0] + grams]), '', '#8ef'),
+#       (" ".join(summary_list[common_n_grams[0] + grams:])))
+ #st.button("Reset")
 st.session_state
