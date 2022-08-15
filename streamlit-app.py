@@ -18,7 +18,9 @@ def get_article_and_summary_n_grams(art, sum, n=2):
 def compare_n_grams(art, sum, N=2):
   A, B = get_article_and_summary_n_grams(art, sum, n=N)
   # return the tuples with start, stop and n-gram if the n-gram from the summary is also in the source text.
-  return [i for i in B if i[2] in [j[2] for j in A]]    
+  summary_tuples = [i for i in B if i[2] in [j[2] for j in A]]   
+  article_tuples = [j for j in A if j[2] in [k[2] for k in summary_tuples]]
+  return [(p[0],m[0],p[2]) for p,m in zip(summary_tuples, article_tuples)]
 
 st.title("add highlighting")
 
@@ -52,3 +54,4 @@ with st.form("Entry"):
        (" ".join(summary_list[common_n_grams[0][0]:common_n_grams[0][1]]), '', '#8ef'),
        (" ".join(summary_list[common_n_grams[0][1]:])))
 #st.button("Reset")
+st.session_state
