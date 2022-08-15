@@ -20,6 +20,8 @@ def compare_n_grams(art, sum, N=2):
   # return the tuples with start, stop and n-gram if the n-gram from the summary is also in the source text.
   return [i for i in B if i[2] in [j[2] for j in A]]    
 
+st.title("add highlighting")
+
 l,c,r = st.columns([1,2,1])
 
 c.title("n-gram analysis")
