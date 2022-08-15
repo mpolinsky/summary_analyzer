@@ -67,14 +67,11 @@ with st.form("Entry"):
       annotated_article.append(" ".join(article_list[start:ngram_tuple[1]]))
       annotated_article.append((" ".join(article_list[ngram_tuple[1]:ngram_tuple[1]+grams]), '', '#8ef'))
       start = ngram_tuple[1]+grams
-    annotated_article.append("".join(article_list[start:]))
+    annotated_article.append(" ".join(article_list[start:]))
       
     if len(common_n_grams) > 0:
+      st.subheader("Summary:")
       annotated_text(*annotated_summary)
-      st.write("")
+      st.subheader("Original:")
       annotated_text(*annotated_article)
-#        " ".join(summary_list[:common_n_grams[0] + grams] ),
-#      (" ".join(summary_list[common_n_grams[0] + grams:common_n_grams[0] + grams]), '', '#8ef'),
-#       (" ".join(summary_list[common_n_grams[0] + grams:])))
- #st.button("Reset")
-st.session_state
+ 
