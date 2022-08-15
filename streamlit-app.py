@@ -65,13 +65,18 @@ with st.form("Entry"):
     for ngram_tuple in common_n_grams:
       # add text from start to next tuple start
       annotated_article.append(" ".join(article_list[start:ngram_tuple[1]]))
-      annotated_article.append((" ".join(article_list[ngram_tuple[1]:ngram_tuple[1]+grams]), '', '#8ef'))
+      annotated_article.append((" ".join(article_list[ngram_tuple[1]:ngram_tuple[1]+grams]), '', '#afa'))
       start = ngram_tuple[1]+grams
     annotated_article.append(" ".join(article_list[start:]))
-      
+    
+    
+    
     if len(common_n_grams) > 0:
-      st.subheader("Summary:")
-      annotated_text(*annotated_summary)
-      st.subheader("Original:")
-      annotated_text(*annotated_article)
- 
+      art_col, sum_col = st.columns(2)
+      with art_col:
+        st.subheader("Original:")
+        annotated_text(*annotated_article)
+      with sum_col:
+        st.subheader("Summary:")
+        annotated_text(*annotated_summary)
+
