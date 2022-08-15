@@ -49,7 +49,7 @@ with st.form("Entry"):
     #common_n_grams = [i[2] for i in common_n_grams]
    #  # c_n_grams contains the grams, indices contains start and stop index for each.
 
-    common_n_grams[0]
+    common_n_grams[0]+grams
   
 #    if len(common_n_grams) > 0:
 #      annotated_text(
