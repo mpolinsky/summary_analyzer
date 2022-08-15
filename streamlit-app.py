@@ -43,15 +43,17 @@ with st.form("Entry"):
     # common_n_grams is a list of the above start,stop,ngram tuples.
     common_n_grams = compare_n_grams(article, summary, N=grams)[::grams]
     st.subheader(f"{len(common_n_grams)} found.")
-    
+    st.write(common_n_grams)
     summary_list = summary.split(" ")
     #indices = [(i[0],i[1]) for i in common_n_grams]
     #common_n_grams = [i[2] for i in common_n_grams]
    #  # c_n_grams contains the grams, indices contains start and stop index for each.
+   """
     if len(common_n_grams) > 0:
       annotated_text(
         " ".join(summary_list[:common_n_grams[0] + grams] ),
        (" ".join(summary_list[common_n_grams[0] + grams:common_n_grams[0] + grams]), '', '#8ef'),
        (" ".join(summary_list[common_n_grams[0] + grams:])))
+  """
 #st.button("Reset")
 st.session_state
